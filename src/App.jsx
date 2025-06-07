@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchVideos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/videos');
+     const response = await axios.get(`${import.meta.env.VITE_API_URL}/videos`);
       setVideos(response.data);
     } catch (error) {
       console.error(error);
@@ -26,7 +26,7 @@ const App = () => {
     formData.append('title', title);
 
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setVideos([...videos, response.data.video]);
@@ -70,7 +70,7 @@ const App = () => {
           <div key={video._id} className="bg-white p-4 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold">{video.title}</h2>
             <video controls width="100%" className="mt-2 rounded">
-              <source src={`http://localhost:5000${video.videoUrl}`} type="video/mp4" />
+              <source src={`${import.meta.env.VITE_API_URL}${video.videoUrl}`} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
