@@ -1,6 +1,6 @@
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
-
+console.log("🔍 VITE_API_URL =", import.meta.env.VITE_API_URL);
 const App = () => {
   const [videos, setVideos] = useState([]);
   const [title, setTitle] = useState('');
