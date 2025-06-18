@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchVideos = async () => {
     try {
-     const response = await axios.get('${import.meta.env.VITE_API_URL}/videos');
+     const response = await axios.get(`${import.meta.env.VITE_API_URL}/videos`);
       setVideos(response.data);
     } catch (error) {
       console.error(error);
@@ -26,8 +26,8 @@ const App = () => {
     formData.append('title', title);
 
     try {
-      const response = await axios.post('${import.meta.env.VITE_API_URL}/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/upload`, formData, {
+  headers: { 'Content-Type': 'multipart/form-data' },
       });
       setVideos([...videos, response.data.video]);
       setTitle('');
